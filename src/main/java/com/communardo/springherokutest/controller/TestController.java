@@ -2,10 +2,7 @@ package com.communardo.springherokutest.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import javax.persistence.Entity;
@@ -25,6 +22,13 @@ public class TestController {
     @GetMapping("/test")
     public String test() {
         return "Test Successful";
+    }
+
+
+    @GetMapping("/greetings/{id}")
+    public ResponseEntity<Greeting> getGreeting(@PathVariable Integer id) throws Exception {
+        Greeting list = greetingRepository.findById(id).orElseThrow(() -> new Exception("can not find it"));
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/greetings")
