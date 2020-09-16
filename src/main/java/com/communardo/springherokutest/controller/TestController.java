@@ -10,6 +10,11 @@ public class TestController {
     public String hello() {
         return "Wlecome to Spring - Heroku";
     }
+
+    @GetMapping("/test")
+    public String test() {
+        return "Test Successful";
+    }
 }
 
 
